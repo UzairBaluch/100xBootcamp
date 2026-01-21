@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>IIELENLABS LOGIN PAGE</title>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+      }
+      .form {
+        padding: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+      }
+      .wraper {
+        height: 600px;
+        width: 275px;
+
+        justify-content: center;
+        align-items: center;
+      }
+      h1 {
+        margin-bottom: 15px;
+        font-weight: 600;
+        text-align: center;
+        font-size: 25px;
+      }
+      .header {
+        border: 1px solid rgb(210, 210, 210);
+        justify-content: flex-start;
+        align-items: center;
+        display: flex;
+        border-radius: 8px;
+        height: 35px;
+        display: flex;
+        margin-bottom: 40px;
+      }
+      .header img {
+        width: 20px;
+        height: 20px;
+        object-fit: cover;
+        padding: 5px;
+      }
+      .header span {
+        font-weight: bold;
+        margin-left: 40px;
+      }
+      .main h5 {
+        font-weight: bold;
+        padding: 5px;
+      }
+      .main input {
+        width: 100%;
+        height: 35px;
+        border-radius: 8px;
+        border: 1px solid rgb(210, 210, 210);
+      }
+      .main button {
+        margin-top: 10px;
+        width: 100%;
+        height: 30px;
+        border-radius: 8px;
+        background: rgb(96, 96, 96);
+        border: 1px solid rgb(210, 210, 210);
+        color: #fff;
+      }
+      .foot {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .foot .span2 {
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="form">
+      <div class="wraper">
+        <h1>Create an account</h1>
+        <div class="header">
+          <div class="img">
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Google_%22G%22_logo.svg/250px-Google_%22G%22_logo.svg.png"
+              alt=""
+            />
+          </div>
+          <span>Sign up with Google</span>
+          <hr />
+        </div>
+        <div class="main">
+          <h5>Email</h5>
+          <input type="text" />
+          <h5>Password</h5>
+          <input type="password" />
+          <button>Sign up</button>
+          <div class="foot">
+            <span>Already registered?</span>
+            <span class="span2">Sign in</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
