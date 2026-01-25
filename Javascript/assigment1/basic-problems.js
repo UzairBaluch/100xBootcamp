@@ -2,12 +2,12 @@
 // Input: { food: [10, 20, 30], travel: [5, 15], bills: [40, 60] }
 // Output: { food: 60, travel: 20, bills: 100 }
 const input1 = { food: [10, 20, 30], travel: [5, 15], bills: [40, 60] };
-let reslut1 = {};
+let result1 = {};
 Object.keys(input1).forEach((key) => {
   let result = input1[key].reduce((acc, curr) => {
     return acc + curr;
   }, 0);
-  reslut1[key] = result;
+  result1[key] = result;
 });
 // console.log(reslut1);
 
@@ -28,11 +28,7 @@ input2.forEach((item) => {
 // #3: Swap keys and values of object
 // Input: { a: "x", b: "y", c: "z" }
 // Output: { x: "a", y: "b", z: "c" }
-// Steps:
-// 1. Create empty result object
-// 2. Loop through keys of input
-// 3. For each key-value pair, swap them: result[value] = key
-// 4. Return result
+
 let input3 = { a: "x", b: "y", c: "z" };
 let result3 = {};
 Object.keys(input3).forEach((key) => {
@@ -44,11 +40,7 @@ Object.keys(input3).forEach((key) => {
 // #4: Find the largest value key
 // Input: { a: 10, b: 50, c: 20 }
 // Output: "b"
-// Steps:
-// 1. Track maxKey and maxValue variables
-// 2. Loop through object
-// 3. If current value > maxValue, update both
-// 4. Return maxKey
+
 let input4 = { a: 100, b: 50, c: 20 };
 let maxKey;
 let maxValue = -Infinity;
@@ -64,64 +56,94 @@ Object.keys(input4).forEach((key) => {
 // #5: Flatten object of arrays into one array
 // Input: { fruits: ["apple", "banana"], veggies: ["carrot", "pea"] }
 // Output: ["apple", "banana", "carrot", "pea"]
-// Steps:
-// 1. Create empty result array
-// 2. Loop through object values
-// 3. For each array, push all its elements to result (use spread or concat or loop)
-// 4. Return result
 
 let input5 = { fruits: ["apple", "banana"], veggies: ["carrot", "pea"] };
 let result5 = [];
 Object.keys(input5).forEach((key) => {
   result5.push(...input5[key]);
 });
-console.log(result5);
+// console.log(result5);
 
 // #6: Group people by city
 // Input: [{ name: "A", city: "Delhi" }, { name: "B", city: "Mumbai" }, { name: "C", city: "Delhi" }]
-// Output: { Delhi: ["A", "C"], Mumbai: ["B"] }
-// Steps:
-// 1. Create empty result object
-// 2. Loop through array of people
-// 3. For each person, if city exists in result, push name, else create new array with name
-// 4. Return result
+
+let input6 = [
+  { name: "A", city: "Delhi" },
+  { name: "B", city: "Mumbai" },
+  { name: "C", city: "Delhi" },
+];
+let result6 = {};
+input6.forEach((item) => {
+  if (result6[item.city]) {
+    result6[item.city].push(item.name);
+  } else {
+    result6[item.city] = [item.name];
+  }
+});
+// console.log(result6);
 
 // #7: Filter object by values > 50
 // Input: { a: 20, b: 60, c: 40, d: 90 }
 // Output: { b: 60, d: 90 }
-// Steps:
-// 1. Create empty result object
-// 2. Loop through input object
-// 3. If value > 50, add to result
-// 4. Return result
+
+let input7 = { a: 20, b: 60, c: 40, d: 90 };
+let result7 = {};
+Object.keys(input7).forEach((key) => {
+  if (input7[key] > 50) {
+    result7[key] = input7[key];
+  }
+});
+// console.log(result7);
 
 // #8: Find student with highest average mark
 // Input: { A: [80, 90], B: [70, 75, 85] }
 // Output: "A"
-// Steps:
-// 1. Track bestStudent and highestAvg
-// 2. Loop through students
-// 3. Calculate average for each (sum / length)
-// 4. If avg > highestAvg, update both variables
-// 5. Return bestStudent
+
+let input8 = { A: [80, 90], B: [70, 75, 85] };
+let bestStudent;
+let highestAvg = -Infinity;
+
+Object.keys(input8).forEach((key) => {
+  let sum = input8[key].reduce((acc, curr) => {
+    return acc + curr;
+  }, 0);
+  let avg = sum / input8[key].length;
+  if (avg > highestAvg) {
+    highestAvg = avg;
+    bestStudent = key;
+  }
+});
+// console.log(bestStudent);
+// console.log(highestAvg);
 
 // #9: Unique values across all object arrays
 // Input: { x: [1,2,3], y: [2,3,4], z: [4,5] }
 // Output: [1,2,3,4,5]
-// Steps:
-// 1. Create empty Set (or array to track unique)
-// 2. Loop through object values (arrays)
-// 3. For each array, add all elements to Set
-// 4. Convert Set back to array and return
+
+let input9 = { x: [1, 2, 3], y: [2, 3, 4], z: [4, 5] };
+let unique = new Set();
+let result9;
+Object.keys(input9).forEach((key) => {
+  input9[key].forEach((e) => {
+    unique.add(e);
+  });
+});
+result9 = Array.from(unique);
+// console.log(result9);
 
 // #10: Pick only given keys from object
 // Input: { name: "Rahul", age: 23, city: "Noida" }, ["name","city"]
 // Output: { name: "Rahul", city: "Noida" }
-// Steps:
-// 1. Create empty result object
-// 2. Loop through the keys array (second parameter)
-// 3. For each key, if it exists in input object, add to result
-// 4. Return result
+
+let input10 = { name: "Rahul", age: 23, city: "Noida" };
+let result10 = {};
+let key10 = ["name", "city"];
+key10.forEach((key) => {
+  if (input10[key]) {
+    result10[key] = input10[key];
+  }
+});
+console.log(result10);
 
 // #11: Find student with highest average marks (duplicate of #8)
 // Same as #8
