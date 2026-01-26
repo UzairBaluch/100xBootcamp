@@ -9,7 +9,7 @@ Object.keys(input1).forEach((key) => {
   }, 0);
   result1[key] = result;
 });
-// console.log(reslut1);
+// console.log(resul1);
 
 // #2: Count word occurrences in array
 // Input: ["apple", "banana", "apple", "orange", "banana", "apple"]
@@ -121,11 +121,11 @@ Object.keys(input8).forEach((key) => {
 // Output: [1,2,3,4,5]
 
 let input9 = { x: [1, 2, 3], y: [2, 3, 4], z: [4, 5] };
-let unique = new Set();
+let unique9 = new Set();
 let result9;
 Object.keys(input9).forEach((key) => {
   input9[key].forEach((e) => {
-    unique.add(e);
+    unique9.add(e);
   });
 });
 result9 = Array.from(unique);
@@ -143,85 +143,119 @@ key10.forEach((key) => {
     result10[key] = input10[key];
   }
 });
-console.log(result10);
+// console.log(result10);
 
 // #11: Find student with highest average marks (duplicate of #8)
 // Same as #8
+let input11 = { A: [80, 90], B: [70, 75, 85] };
+let bestStudent11;
+let highestAvg11 = -Infinity;
+
+Object.keys(input11).forEach((key) => {
+  let sum = input11[key].reduce((acc, curr) => {
+    return acc + curr;
+  }, 0);
+  let avg11 = sum / input11[key].length;
+  if (avg11 > highestAvg11) {
+    highestAvg11 = avg11;
+    bestStudent11 = key;
+  }
+});
+// console.log(bestStudent11);
+// console.log(highestAvg11);
 
 // #12: Sort object entries by values (ascending)
 // Input: { a: 3, b: 1, c: 2 }
 // Output: [["b",1], ["c",2], ["a",3]]
-// Steps:
-// 1. Convert object to array of entries using Object.entries()
-// 2. Sort the array by second element (value) of each entry
-// 3. Return sorted array
+
+let input12 = { a: 3, b: 1, c: 2 };
+let result12 = Object.entries(input12).sort((a, b) => a[1] - b[1]);
+// console.log(result12);
 
 // #13: Count number of keys in object
 // Input: { a: 1, b: 2, c: 3 }
 // Output: 3
-// Steps:
-// 1. Use Object.keys() to get array of keys
-// 2. Return length of that array
+
+let input13 = { a: 1, b: 2, c: 3 };
+let result13 = Object.keys(input13).length;
+// console.log(result13);
 
 // #14: Capitalize string values inside object
 // Input: { name: "alice", city: "delhi" }
 // Output: { name: "Alice", city: "Delhi" }
-// Steps:
-// 1. Create empty result object
-// 2. Loop through input object
-// 3. For each value, capitalize first letter (charAt(0).toUpperCase() + rest)
-// 4. Store in result with same key
-// 5. Return result
+
+let input14 = { name: "alice", city: "delhi" };
+let result14 = {};
+Object.keys(input14).forEach((key) => {
+  result14[key] = input14[key].charAt(0).toUpperCase() + input14[key].slice(1);
+});
+// console.log(result14);
 
 // #15: Convert object to query string
 // Input: { name: "Alice", age: 25 }
 // Output: "name=Alice&age=25"
-// Steps:
-// 1. Get array of entries from object
-// 2. Map each entry to "key=value" format
-// 3. Join array with "&"
-// 4. Return string
+let input15 = { name: "Alice", age: 25 };
+
+let arrEn = Object.entries(input15);
+let mapped = arrEn.map((e) => {
+  return e[0] + "=" + e[1];
+});
+let result15 = mapped.join("&");
+// console.log(result15);
 
 // #16: Count even and odd numbers in array
 // Input: [1,2,3,4,5,6]
 // Output: { even: 3, odd: 3 }
-// Steps:
-// 1. Create result object with even: 0, odd: 0
-// 2. Loop through array
-// 3. For each number, check if % 2 === 0, increment even or odd
-// 4. Return result
+let input16 = [1, 2, 3, 4, 5, 6];
+let result16 = { even: 0, odd: 0 };
+input16.forEach((num) => {
+  if (num % 2 === 0) {
+    result16.even++;
+  } else {
+    result16.odd++;
+  }
+});
+// console.log(result16);
 
 // #17: Find common keys between two objects
 // Input: { a: 1, b: 2, c: 3 }, { b: 4, c: 5, d: 6 }
 // Output: ["b","c"]
-// Steps:
-// 1. Get keys from first object
-// 2. Filter keys that also exist in second object (use hasOwnProperty or 'in' operator)
-// 3. Return filtered array
+let input17 = { a: 1, b: 2, c: 3 };
+let secondInput = { b: 4, c: 5, d: 6 };
+let filteredKeys = Object.keys(input17).filter((key) => {
+  return key in secondInput;
+});
+
+// console.log(filteredKeys);
 
 // #18: Convert array of objects to lookup by id
 // Input: [{ id: 1, name: "A" }, { id: 2, name: "B" }]
 // Output: { 1: { id:1, name:"A" }, 2: { id:2, name:"B" } }
-// Steps:
-// 1. Create empty result object
-// 2. Loop through array
-// 3. For each object, use its id as key in result
-// 4. Return result
+
+let input18 = [
+  { id: 1, name: "A" },
+  { id: 2, name: "B" },
+];
+let result18 = {};
+input18.forEach((obj) => {
+  result18[obj.id] = obj;
+});
+// console.log(result18);
 
 // #19: Check if all values in object are numbers
 // Input: { a: 1, b: "hello", c: 3 }
 // Output: false
-// Steps:
-// 1. Get all values from object using Object.values()
-// 2. Use .every() to check if all values have typeof === 'number'
-// 3. Return boolean result
+let input19 = { a: 1, b: "hello", c: 3 };
+let values = Object.values(input19);
+let result19 = values.every((num) => typeof num === "number");
+console.log(result19);
 
 // #20: Merge two objects (no sum, override second)
 // Input: { a: 10, b: 20 }, { a: 5, c: 15 }
 // Output: { a: 5, b: 20, c: 15 }
-// Steps:
-// 1. Create copy of first object (or start with empty object)
-// 2. Loop through second object
-// 3. Add/override all keys from second object into result
-// 4. Return result
-// Note: Can also use Object.assign() or spread operator {...obj1, ...obj2}
+
+let input20 = { a: 10, b: 20 };
+let inputTwo = { a: 5, c: 15 };
+let result20 = { ...input20, ...inputTwo };
+
+console.log(result20);
