@@ -128,7 +128,7 @@ Object.keys(input9).forEach((key) => {
     unique9.add(e);
   });
 });
-result9 = Array.from(unique);
+result9 = Array.from(unique9);
 // console.log(result9);
 
 // #10: Pick only given keys from object
