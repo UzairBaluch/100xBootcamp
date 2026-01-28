@@ -99,13 +99,6 @@ duplicates.forEach((obj) => {
 // #7: Chunk object entries into groups of size
 // Input: { a: 1, b: 2, c: 3, d: 4 }, size=2
 // Output: [ [["a",1],["b",2]], [["c",3],["d",4]] ]
-// Steps:
-// 1. Get entries from object using Object.entries()
-// 2. Create empty result array
-// 3. Loop through entries with index
-// 4. Every 'size' elements, create a new chunk (use slice or manual grouping)
-// 5. Push chunk to result
-// 6. Return result
 
 let entries = { a: 1, b: 2, c: 3, d: 4 };
 let size = 2;
@@ -162,115 +155,171 @@ console.log(resultedTranslation);
 // Input: [{ id: 1, category: "fruit" }, { id: 2, category: "veggie" }, { id: 3, category: "fruit" }]
 // Output: { fruit: [1,3], veggie: [2] }
 
-
 let index = [
   { id: 1, category: "fruit" },
   { id: 2, category: "veggie" },
   { id: 3, category: "fruit" },
 ];
-let indexresult = {}
-index.forEach((item)=>{
-if (indexresult[item.category]) {
-  indexresult[item.category].push(item.id);
-} else {
-  indexresult[item.category] = [item.id];
-}
-  
-})
+let indexresult = {};
+index.forEach((item) => {
+  if (indexresult[item.category]) {
+    indexresult[item.category].push(item.id);
+  } else {
+    indexresult[item.category] = [item.id];
+  }
+});
 console.log(indexresult);
 
 // #11: Remove deeply nested key from object
 // Input: { a: { b: { c: 1, d: 2 } } }, remove "c"
 // Output: { a: { b: { d: 2 } } }
-// Steps:
-// 1. Access the nested object where key exists (a.b)
-// 2. Use delete operator to remove the key
-// 3. Return modified object
-// Note: This mutates the original object
+
+let removeKey = { a: { b: { c: 1, d: 2 } } };
+delete removeKey.a.b.c;
+console.log(removeKey);
 
 // #12: Check if two objects are deeply equal
 // Input: { a: { x: 1, y: 2 } }, { a: { x: 1, y: 2 } }
 // Output: true
-// Steps:
-// 1. Check if both are objects (not null, not array)
-// 2. Compare number of keys
-// 3. Loop through keys of first object
-// 4. For each key, recursively compare values
-// 5. Return true if all match, false otherwise
+
+let obj1 = { a: { x: 1, y: 2 } };
+let obj2 = { a: { x: 1, y: 2 } };
+let isEqual = (obj1, obj2) => {
+  if (typeof obj1 !== "object" || typeof obj2 !== "object") {
+    return false;
+  }
+  if (Object.keys(obj1).length !== Object.keys(obj2).length) {
+    return false;
+  }
+  for (let key in obj1) {
+    if (!isEqual(obj1[key], obj2[key])) {
+      return true;
+    }
+  }
+  return true;
+};
+console.log(isEqual(obj1, obj2));
 
 // #13: Deep flatten nested arrays inside object
 // Input: { a: [1, [2, [3]]], b: [4, [5]] }
 // Output: { a: [1,2,3], b: [4,5] }
-// Steps:
-// 1. Create empty result object
-// 2. Loop through object entries
-// 3. For each array value, use .flat(Infinity) to flatten completely
-// 4. Add flattened array to result with same key
-// 5. Return result
 
+let deepFlatten = { a: [1, [2, [3]]], b: [4, [5]] };
+let resultDeep = {};
+Object.entries(deepFlatten).forEach(([key, value]) => {
+  resultDeep[key] = value.flat(Infinity);
+});
+console.log(resultDeep);
 // #14: Find most repeated word across categories
 // Input: { fruits: ["apple","apple","banana"], drinks: ["apple","tea"] }
 // Output: "apple"
-// Steps:
-// 1. Create object to count all words
-// 2. Loop through object values (arrays)
-// 3. For each array, loop through words and count occurrences
-// 4. Find word with highest count (similar to problem #4 from basics)
-// 5. Return most repeated word
+
+let input14 = {
+  fruits: ["apple", "apple", "banana"],
+  drinks: ["apple", "tea"],
+};
+let result14 = {};
+Object.entries(input14).forEach(([key, value]) => {
+  value.forEach((item) => {
+    if (result14[item]) {
+      result14[item] = result14[item] + 1;
+    } else {
+      result14[item] = 1;
+    }
+  });
+});
+let mostRepeatedWord = Object.entries(result14).reduce((acc, curr) => {
+  if (acc[1] < curr[1]) {
+    acc = curr;
+  }
+  return acc;
+});
+console.log(mostRepeatedWord[0]);
 
 // #15: Find intersection of all arrays in object
 // Input: { a: [1,2,3], b: [2,3,4], c: [3,4,5] }
 // Output: [3]
-// Steps:
-// 1. Get all arrays from object values
-// 2. Take first array as reference
-// 3. Filter elements that exist in ALL other arrays
-// 4. Use .every() to check if element exists in each array
-// 5. Return filtered result
+
+let input15 = {
+  a: [1, 2, 3],
+  b: [2, 3, 4],
+  c: [3, 4, 5],
+};
+let result15 = input15.a.filter((item) =>
+  Object.values(input15).every((arr) => arr.includes(item)),
+);
+console.log(result15);
 
 // #16: Deep merge two nested objects
 // Input: { a: { x: 1, y: 2 } }, { a: { y: 3, z: 4 } }
 // Output: { a: { x: 1, y: 3, z: 4 } }
-// Steps:
-// 1. Create result object starting with first object
-// 2. Loop through second object keys
-// 3. For each key, check if value is object
-// 4. If both values are objects, recursively merge them
-// 5. Otherwise, override with second object's value
-// 6. Return merged result
+
+
+let obbj1 = { a: { x: 1, y: 2 } };
+let obbj2 = { a: { y: 3, z: 4 } };
+let deepMerge = (obbj1, obbj2) => {
+  let result = { ...obbj1 };
+  Object.entries(obbj2).forEach(([key, value]) => {
+    if (typeof value === "object") {
+      result[key] = deepMerge(result[key], value);
+    } else {
+      result[key] = value;
+    }
+  });
+  return result;
+};
+console.log(deepMerge(obbj1, obbj2));
 
 // #17: Nested object destructuring
 // Input: { user: { profile: { name: "Alice", age: 25 } } }
 // Output: "Alice 25"
-// Steps:
-// 1. Use destructuring syntax to extract nested values
-// 2. Access user.profile.name and user.profile.age
-// 3. Return or log the values
+
+
+let input17 = { user: { profile: { name: "Alice", age: 25 } } };
+let { user: { profile: { name, age } } } = input17;
+console.log(`${name} ${age}`);
 
 // #18: Find top N keys by value
 // Input: { a: 10, b: 50, c: 30, d: 40 }, N=2
 // Output: ["b","d"]
-// Steps:
-// 1. Convert object to entries array
-// 2. Sort entries by value in descending order
-// 3. Take first N entries using .slice(0, N)
-// 4. Map to get just the keys
-// 5. Return array of keys
+
+
+let input18 = { a: 10, b: 50, c: 30, d: 40 };
+let N = 2;
+let result18 = Object.entries(input18)
+  .sort((a, b) => b[1] - a[1])
+  .slice(0, N)
+  .map((item) => item[0]);
+console.log(result18);
 
 // #19: Sort array of objects by name then age
 // Input: [{ name: "Alice", age: 30 }, { name: "Bob", age: 25 }, { name: "Alice", age: 22 }]
 // Output: [{ name: "Alice", age: 22 }, { name: "Alice", age: 30 }, { name: "Bob", age: 25 }]
-// Steps:
-// 1. Use .sort() with comparison function
-// 2. First compare by name (a.name vs b.name)
-// 3. If names are equal, compare by age
-// 4. Return sorted array
+
+
+let input19 = [
+  { name: "Alice", age: 30 },
+  { name: "Bob", age: 25 },
+  { name: "Alice", age: 22 },
+];
+let result19 = input19.sort((a, b) => {
+  if (a.name === b.name) {
+    return a.age - b.age;
+  }
+  return a.name.localeCompare(b.name);
+});
+console.log(result19);
+
 
 // #20: Reconcile two lists (missing + extra items)
 // Input: expected:["a","b","c"], actual:["b","c","d"]
 // Output: { missing:["a"], extra:["d"] }
-// Steps:
-// 1. Create result object with missing and extra arrays
-// 2. Find missing: filter expected items not in actual (use .includes())
-// 3. Find extra: filter actual items not in expected
-// 4. Return result object
+
+
+let expected = ["a", "b", "c"];
+let actual = ["b", "c", "d"];
+let result20 = {
+  missing: expected.filter((item) => !actual.includes(item)),
+  extra: actual.filter((item) => !expected.includes(item)),
+};
+console.log(result20);
