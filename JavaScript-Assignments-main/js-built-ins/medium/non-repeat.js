@@ -21,6 +21,26 @@
   - `npm run test-nonrepeat`
 */
 function nonrepeat(str) {
-  // Your code here
+  if (str === "") return null;
+
+  let count = {};
+  let sum = 0;
+
+  for (let i = 0; i < str.length; i++) {
+    let char = str[i];
+    if (count[char]) {
+      count[char]++; 
+    } else {
+      count[char] = 1; 
+    }
+  }
+
+  for (let i = 0; i < str.length; i++) {
+    let char = str[i];
+    if (count[char] === 1) {
+      return char; 
+    }
+  }
+
+  return null;
 }
-module.exports = nonrepeat;

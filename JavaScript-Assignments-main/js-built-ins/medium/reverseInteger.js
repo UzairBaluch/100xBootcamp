@@ -22,6 +22,24 @@
 */
 
 function reverseInteger(num) {
-  // Your code here
-}
+  let isNegative = false;
+  if (num < 0) {
+    isNegative = true;
+  }
 
+  let positiveNum = Math.abs(num);
+
+  let str = String(positiveNum);
+
+  let arr = str.split("");
+  let revseredstr = arr.reverse();
+  let joinedStr = revseredstr.join("");
+
+  let number = Number(joinedStr);
+
+  if (isNegative) {
+    number = number * -1;
+  }
+
+  return number;
+}

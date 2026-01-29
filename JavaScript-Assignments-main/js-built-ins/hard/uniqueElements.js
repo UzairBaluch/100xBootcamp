@@ -19,7 +19,9 @@
 */
 
 function getUniqueElements(arr) {
-  // Your code here
+  let newSet = new Set(arr)
+  arr = Array.from(newSet)
+  return arr
 }
 
 

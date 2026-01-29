@@ -26,6 +26,14 @@
 */
 
 function isPerfectNumber(num) {
-  // Your code here
+  if (num <= 1) {
+    return false;
+  }
+  let sumOfDivisors = 0;
+  for (let i = 1; i <= num / 2; i++) {
+    if (num % i === 0) {
+      sumOfDivisors = sumOfDivisors + i;
+    }
+  }
+return sumOfDivisors === num;
 }
-
