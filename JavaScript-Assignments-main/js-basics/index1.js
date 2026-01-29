@@ -259,3 +259,5 @@ let inputTwo = { a: 5, c: 15 };
 let result20 = { ...input20, ...inputTwo };
 
 console.log(result20);
+
+
