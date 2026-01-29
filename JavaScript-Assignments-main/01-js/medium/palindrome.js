@@ -7,6 +7,9 @@
 */
 
 function isPalindrome(str) {
-    return true;
+  let strLower = str.toLowerCase();
+  let arr = strLower.split("");
+  let revseredArr = arr.reverse();
+  let joinedArr = revseredArr.join("");
+  return joinedArr === strLower;
 }
-
