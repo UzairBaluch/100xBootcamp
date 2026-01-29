@@ -30,4 +30,4 @@ function countOccurrences(arr) {
   return result;
 }
 
-module.exports = countOccurrences;
+

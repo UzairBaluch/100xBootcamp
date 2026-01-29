@@ -35,4 +35,4 @@ function calculateTotalSpentByCategory(transactions) {
   return output
 }
 
-module.exports = calculateTotalSpentByCategory;
+

@@ -25,4 +25,3 @@ function reverseInteger(num) {
   // Your code here
 }
 
-module.exports = reverseInteger;

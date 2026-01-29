@@ -19,4 +19,4 @@ function getPrimesUpTo100() {
   // Your code here
 }
 
-module.exports = { getPrimesUpTo100 };
+

@@ -22,4 +22,4 @@ function reverseString(str) {
   // Your code here
 }
 
-module.exports = reverseString;
+

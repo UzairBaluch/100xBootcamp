@@ -29,4 +29,3 @@ function isPerfectNumber(num) {
   // Your code here
 }
 
-module.exports = { isPerfectNumber };

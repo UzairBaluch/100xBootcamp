@@ -22,4 +22,4 @@ function getUniqueElements(arr) {
   // Your code here
 }
 
-module.exports = getUniqueElements;
+

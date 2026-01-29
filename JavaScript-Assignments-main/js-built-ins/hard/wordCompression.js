@@ -27,4 +27,3 @@ function compressWords(arr) {
 }
 
 
-module.exports = compressWords;
