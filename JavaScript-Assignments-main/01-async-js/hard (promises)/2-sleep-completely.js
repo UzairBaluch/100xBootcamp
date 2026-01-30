@@ -5,6 +5,13 @@
  */
 
 function sleep(milliseconds) {
+  return new Promise((resolve) => {
+    const startTime = Date.now();
+
+    while (Date.now() - startTime < milliseconds) {}
+
+    resolve();
+  });
 }
 
-
+// sleep(3000).then(() => console.log("3 seconds passed"));
