@@ -8,6 +8,5 @@ function sleep(millis) {
     });
 }
 
-module.exports = sleep;
 
 

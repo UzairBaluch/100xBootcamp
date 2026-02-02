@@ -3,6 +3,25 @@
 // You are required to implement a wrapper function named once that accepts an asynchronous function fn.
 // The wrapper should ensure that fn is executed only on the first call.
 // Any subsequent calls must not re-execute fn and should instead return the same Promise or resolved result from the first invocation.
-function once(fn) {}
+function once(fn) {
+   let isRuning;
+   return function () {
+    if (!isRuning) {
+      isRuning = fn()
+    }
+    return isRuning
+   }
 
-module.exports = once;
+}
+
+
+ async function expensiveOperation() {
+  console.log("Running expensive operation!");
+  return "result";
+}
+
+const runOnce = once(expensiveOperation);
+
+runOnce(); 
+runOnce(); 
+runOnce(); 
