@@ -7,9 +7,13 @@
 // 1. Use the `fs.promises` API.
 // 2. Do NOT use `fs.existsSync` (which is synchronous).
 // 3. Hint: Use `fs.promises.access()` and handle the error if it doesn't exist.
-
 const fs = require("fs").promises;
 
-async function checkFileExists(path) {}
-
-module.exports = checkFileExists;
+async function checkFileExists(path) {
+  try {
+    await fs.access(path);
+    return true;
+  } catch (error) {
+    return false;
+  }
+}
