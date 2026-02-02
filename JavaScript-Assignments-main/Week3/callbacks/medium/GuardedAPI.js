@@ -7,4 +7,3 @@ class GuardedAPI {
   constructor(initPromise) {}
 }
 
-module.exports = GuardedAPI;
